@@ -171,7 +171,7 @@ class ClientApp:
                             self.height,
                             player,
                             engine,
-                            Network(self.port, player.name, player))
+                            Network(self.port, self.ip, player.name, player))
             engine.run = True
             start_new_thread(self.get_status, (ls,))
             ls.game_loop(engine)

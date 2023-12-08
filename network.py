@@ -6,14 +6,17 @@ from typing import Union
 
 
 class Network:
-    def __init__(self, port: int, my_id: str, first_obj: Union[bool, object] = False):
+    def __init__(self, port: int, ip: str, my_id: str, first_obj: Union[bool, object] = False):
+        """
+        client side network
+        :param port: port number
+        :param ip: ip address of server
+        :param my_id: identifier for network
+        :param first_obj: optional object to pass to server on handshake
         """
 
-        :param port: port number
-        :param my_id: string used to handshake with server
-        """
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.server = socket.gethostbyname(socket.gethostname())
+        self.server = ip #  socket.gethostbyname(socket.gethostname())
         self.port = port
         self.addr = (self.server, self.port)
         self.conn_status = self.connect(my_id)
@@ -82,9 +85,8 @@ class Network:
         #     print(e)
 
 
-
 if __name__ == '__main__':
-    n = Network(5554, 'Logan')
+    n = Network(5554, socket.gethostbyname(socket.gethostname()), 'Logan')
 
     # n.send_obj('b')
     # n.client.send(str.encode("your mother"))
