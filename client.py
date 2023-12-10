@@ -228,11 +228,11 @@ class LocalState:
                                 self.selected == [] or adj(buttons[-1].coord, self.selected[-1].coord)) and \
                                 buttons[-1] not in self.selected:
                             self.selected.append(buttons[-1])
-                    elif mouse[1]:
+                    elif mouse[2]:
                         self.submit_word([button.coord for button in self.selected])
                         self.selected.clear()
-                    elif mouse[2]:
-                        self.selected.clear()
+                    # elif mouse[2]:
+                    #     self.selected.clear()
 
             self.engine.update()
             self.update()
